@@ -77,7 +77,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  overflow:  "visible";
+  overflow:  "auto";
 }
 
 html,
@@ -105,4 +105,8 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+ul {
+  padding-left:  30px;
 }

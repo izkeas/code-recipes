@@ -34,17 +34,17 @@ const theme =  createTheme({
         mode : "dark",
 
         primary : {
-            main : "#63D4D4"
+            main : "#B6FFEF"
         },
 
         text : {
-            primary : "#ECECEC",
-            secondary : "#798686"
+            primary : "#E2E2E2",
+            secondary : "#747880"
         },
 
         background : {
-            default : "#151717",
-            paper : "#212424"
+            default : "#131417",
+            paper : "#24262A"
         }
 
     }
