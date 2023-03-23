@@ -10,8 +10,6 @@ export default function ProjectList(props : Props){
     
     return (
         <Grid container spacing={3}
-            style={{
-            }}
         >
             { props.projects.map( (projectObj) => (
                 <Grid key={projectObj.name} item xs={12} sm={6} md={4} lg={3.5}>

@@ -6,7 +6,7 @@ interface Props {
 }
 
 export function ProjectWindow(props : Props) {
-    const myElementRef = React.useRef<HTMLDivElement>(null);
+    const myElementRef = React.useRef<HTMLDivElement>(null); 
     const [isFullScreen, setIsFullScreen] = React.useState(false);
 
     function setFullScreen() {
@@ -53,7 +53,6 @@ export function ProjectWindow(props : Props) {
                         FullScreen
                     </Button>
                 </Stack>
-
         </div>
     )
 }
