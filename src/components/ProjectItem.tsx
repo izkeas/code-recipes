@@ -49,7 +49,7 @@ export default function ProjectItem(props : Props){
                             sx={{
                                 overflow : "hidden",
                                 textOverflow : "ellipsis",
-                                whiteSpace : "nowrap"
+                                whiteSpace : "normal"
                             }}
                         >
                             {props.description}
