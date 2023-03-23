@@ -7,50 +7,26 @@ export default function Index(){
 
     return (
         <Container>
-            <Grid container>
 
-                <Grid item xs={8}>
-                    <Container>
-                        <div
-                            style={{
-                                margin : "auto",
-                                width : "400px"
-                            }}
-                        >
-                            <LogoSvg/>
-                            <LogoText/>
-                        </div>
-                    </Container>
-                </Grid>
-
-                <Grid item>
-                    <Stack  justifyContent={"center"}
+            <Grid item xs={8}>
+                <Container>
+                    <div
                         style={{
-                            height : "100%",
-                            margin : "auto"
+                            margin : "auto",
+                            width : "400px",
+                            marginTop : "50px"
                         }}
                     >
-                        <Button>
-                            <Typography variant={"h4"}>
-                                Algorithms
-                            </Typography>
-                        </Button>
-                        
-                        <Button>
-                            <Typography variant={"h4"}>
-                                Templates
-                            </Typography>
-                        </Button>
-
-                        <Button>
-                            <Typography variant={"h4"}>
-                                Design Patterns
-                            </Typography>
-                        </Button>
-
-                    </Stack>
-                </Grid>
+                        <LogoSvg
+                            style={{
+                                transform: "rotate()"
+                            }}
+                        />
+                        <LogoText/>
+                    </div>
+                </Container>
             </Grid>
+
         </Container>
     )
 }

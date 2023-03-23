@@ -8,6 +8,14 @@ import NavBar from '@/components/NavBar'
 import React from 'react'
 import Background from "@/components/Background";
 
+const pages=[
+  {
+    name :"Projects",
+    path :"/projects"
+  }
+]
+
+
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
@@ -22,7 +30,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <ThemeProvider theme={Theme}>
           <Background>
           <CssBaseline/>
-            <NavBar/>
+            <NavBar pages={pages}/>
             <Component {...pageProps} />
           </Background>
         </ThemeProvider>

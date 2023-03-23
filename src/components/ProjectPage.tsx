@@ -34,9 +34,7 @@ export default function ProjectPage(props : Props){
 
     return (
         <Paper
-            sx={{
-                overflow : "auto",
-            }}
+            elevation={0}
         >
             <Wrapper>
                 <Stack spacing={2}>

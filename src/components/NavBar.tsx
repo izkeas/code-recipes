@@ -1,8 +1,20 @@
-import { AppBar, Toolbar, Typography, Container, Stack, Button, Grid } from "@mui/material";
+import { AppBar, Toolbar, Typography, Container, Stack, Button, Grid, useTheme } from "@mui/material";
 import Link from "next/link";
 import LogoSvg from "./logoIcon";
+import React from "react";
 
-export default function NavBar() {
+import {AiOutlineClose} from "react-icons/ai"
+
+interface Props {
+    pages : {
+      name : string,
+      path : string  
+    }[]
+}
+
+export default function NavBar(props : Props) {
+    const theme = useTheme();
+    const [ menuPanelVisible, setMenuPanelVisible] = React.useState(true);
 
     return (
         <AppBar 
@@ -14,7 +26,6 @@ export default function NavBar() {
 
             elevation={0}
         >
-
                 <Toolbar>
                     <Container>
                         <Grid container>
@@ -41,19 +52,25 @@ export default function NavBar() {
                                 </Link>
                             </Grid>
 
-                            {/* PAges list only desktop */}
-                            <Grid item 
+                            {/* Pages list only desktop */}
+                            <Grid item xs={4}
                                 sx={{
-                                    display : {xs : "none", md : "block"}
+                                    display : {xs : "none", md : "flex"},
+                                    flexDirection : "row-reverse",
+                                    alignItems : "flex-end"
                                 }}
                             >
-                                <Link href={"/projects"}>
-                                    <Button>
-                                        Projects
-                                    </Button>
-                                </Link>
-                            </Grid>
 
+                                { props.pages.map( (page)=> (
+                                    <div key={page.name + page.path}>
+                                        <Link href={page.path}>
+                                            <Button>
+                                                {page.name}
+                                            </Button>
+                                        </Link>
+                                    </div>
+                                ))}
+                            </Grid>
 
                             {/* Menu only phone*/}
                             <Grid item xs={4}
@@ -61,22 +78,54 @@ export default function NavBar() {
                                 sx={{
                                     display : {xs : "flex", md : "none"},
                                     flexDirection : "row-reverse",
-                                    alignContent : "flex-end",
                                     alignItems : "flex-end"
                                 }}
 
                             >
-                                <Link href={"/projects"}>
-                                    <Button>
-                                        Menu
-                                    </Button>
-                                </Link>
+                                <Button
+                                    onClick={ () => {setMenuPanelVisible(true)}}
+                                >
+                                    Menu
+                                </Button>
                             </Grid>
 
+                            {/* Menu panel */}
+                            <div
+                                style={{
+                                    display : menuPanelVisible ? "block" : "none",
+                                    
+                                    position : "fixed",
+                                    zIndex : 10,
+                                    top : 0,
+                                    right : 0,
+
+                                    width : "200px",
+                                    height : "100vh",
+
+                                    backgroundColor : "rgba(0,0,0,0.9)",
+                                }}
+                            >
+                                <Button
+                                    onClick={ () => {setMenuPanelVisible(false)}}
+                                >
+                                    <AiOutlineClose 
+                                        style={{ width : "40px", height : "auto", color : theme.palette.primary.main}}
+                                    />
+                                </Button>
+
+                                <Stack flexDirection={"column"} alignItems={"center"}>
+                                    { props.pages.map( ( page) => (
+                                        
+                                        <div key={page.name+page.path}>
+                                            <Link href={page.path}>
+                                                <Button>{page.name}</Button>
+                                            </Link>
+                                        </div>
+                                    ))}
+                                </Stack>
+                            </div>
                         </Grid>
-
                     </Container>
-
                 </Toolbar>
         </AppBar>
     )
