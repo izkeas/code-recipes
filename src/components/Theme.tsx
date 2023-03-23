@@ -34,7 +34,7 @@ const theme =  createTheme({
         mode : "dark",
 
         primary : {
-            main : "#B6FFEF"
+            main : "#25bcf8"
         },
 
         text : {
