@@ -12,7 +12,7 @@ interface Props {
 export default function ProjectItem(props : Props){
 
     return (
-        <Link href={`/project/${props.name}`}>
+        <Link href={`/projects/${props.name}`}>
             <div>
                 <Stack spacing={2}> 
                     <Paper
