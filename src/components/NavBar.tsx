@@ -18,25 +18,27 @@ export default function NavBar() {
                 <Toolbar>
                     <Container>
                         <Grid container>
-
                             <Grid item xs={8}>
-                                <Stack direction={"row"}>
-                                    <LogoSvg 
-                                            style={{
-                                                width : "50px",
-                                                height : "50px"
-                                            }}
-                                        />
+                                <Link href="/">
 
-                                    <Typography variant="h3"
-                                        style={{
-                                            marginTop : "auto",
-                                            marginBottom : "auto"
-                                        }}
-                                    >
-                                        Code Recipes
-                                    </Typography>
-                                </Stack>
+                                    <Stack direction={"row"}>
+                                        <LogoSvg 
+                                                style={{
+                                                    width : "50px",
+                                                    height : "50px"
+                                                }}
+                                            />
+
+                                        <Typography variant="h3"
+                                            style={{
+                                                marginTop : "auto",
+                                                marginBottom : "auto"
+                                            }}
+                                        >
+                                            Code Recipes
+                                        </Typography>
+                                    </Stack>
+                                </Link>
                             </Grid>
 
                             {/* PAges list only desktop */}
