@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Button, Paper, Stack, Typography, Grid, Container, TextField } from "@mui/material";
-import { CopyBlock, dracula } from "react-code-blocks";
+import { CopyBlock, atomOneDark as codeTheme  } from "react-code-blocks";
 
 import Wrapper from "./Wrapper";
 import reactStrToComponent from "@/utils/ReactStrToComponent";
@@ -39,28 +39,28 @@ export default function ProjectPage(props : Props){
             <Wrapper>
                 <Stack spacing={2}>
 
-                    <Typography variant={"h1"}>
-                        {props.project.name}
-                    </Typography>
 
                     <ProjectWindow>
                         <Project code={props.project.code}/>
                     </ProjectWindow>
 
+                    <Typography variant={"h2"} fontWeight={700}>
+                        {props.project.name}
+                    </Typography>
+                    
                     <Typography>
                         {props.project.description}
                     </Typography>
 
                     { props.project.useCases && props.project.useCases.length > 0 && 
                         (
-                            <Typography variant={"h2"}>
+                            <Typography variant={"h3"} fontWeight={700}>
                                 Use Cases
                             </Typography>
                         )
                     }
 
-                    <ul
-                    >
+                    <ul>
                         { 
                             props.project.useCases && 
                             props.project.useCases.length > 0 && 
@@ -73,8 +73,8 @@ export default function ProjectPage(props : Props){
                     
                     </ul>
 
-                    <Typography variant={"h2"}>
-                        Implementation
+                    <Typography variant={"h3"} fontWeight={700}>
+                        Implementation Steps
                     </Typography>
 
                     <ul>
@@ -83,12 +83,37 @@ export default function ProjectPage(props : Props){
                         ))}
                     </ul>
 
-                    <CopyBlock
-                        text={props.project.code}
-                        language={"typescript"}
-                        wrapLines
-                        theme={dracula}
-                    />
+                    { props.project.algorithmImplementation && (
+                        <>
+                            <Typography variant={"h3"} fontWeight={700}>
+                                Algorithm Code Example
+                            </Typography>
+
+                            <CopyBlock
+                                text={props.project.algorithmImplementation}
+                                language={"typescript"}
+                                wrapLines
+                                theme={codeTheme}
+                            />
+                        </>
+                    )}
+
+
+                    { props.project.code && (
+                        <>
+                            <Typography variant={"h3"} fontWeight={700}>
+                                React Implementation
+                            </Typography>
+
+                            <CopyBlock
+                                text={props.project.code}
+                                language={"typescript"}
+                                wrapLines
+                                theme={codeTheme}
+                            />
+                        </>
+                    )}
+
 
                     { props.project.references && props.project.references.length > 0 && 
                         (

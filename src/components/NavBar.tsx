@@ -5,16 +5,88 @@ import React from "react";
 
 import {AiOutlineClose} from "react-icons/ai"
 
+interface Page {
+    name : string,
+    path : string  
+}
+
 interface Props {
-    pages : {
-      name : string,
-      path : string  
-    }[]
+    pages : Page[];
+}
+
+interface MenuPanelProps {
+    visible : boolean;
+    onClose : () => void;
+    pages : Page[];
+}
+
+interface MenuButtom {
+    onClick : () => void;
+}
+
+export function MenuButtom(props : MenuButtom){
+    return (
+        <Grid item xs={4}
+
+            sx={{
+                display : {xs : "flex", md : "none"},
+                flexDirection : "row-reverse",
+                alignItems : "flex-end"
+            }}
+
+        >
+            <Button
+                onClick={ () => { props.onClick() }}
+            >
+                Menu
+            </Button>
+        </Grid>
+    )
+}
+
+
+export function MenuPanel(props : MenuPanelProps){
+    const theme = useTheme();
+
+    return (
+        <div
+            style={{
+                display : props.visible ? "block" : "none",
+                
+                position : "fixed",
+                zIndex : 10,
+                top : 0,
+                right : 0,
+
+                width : "200px",
+                height : "100vh",
+
+                backgroundColor : "rgba(0,0,0,0.9)",
+            }}
+        >
+            <Button
+                onClick={ () => { props.onClose() }}
+            >
+                <AiOutlineClose 
+                    style={{ width : "40px", height : "auto", color : theme.palette.primary.main}}
+                />
+            </Button>
+
+            <Stack flexDirection={"column"} alignItems={"center"}>
+                { props.pages.map( ( page) => (
+                    <div key={page.name+page.path}>
+                        <Link href={page.path}>
+                            <Button>{page.name}</Button>
+                        </Link>
+                    </div>
+                ))}
+            </Stack>
+        </div>
+    )
 }
 
 export default function NavBar(props : Props) {
-    const theme = useTheme();
-    const [ menuPanelVisible, setMenuPanelVisible] = React.useState(true);
+    const [ menuPanelVisible, setMenuPanelVisible] = React.useState(false);
 
     return (
         <AppBar 
@@ -72,58 +144,16 @@ export default function NavBar(props : Props) {
                                 ))}
                             </Grid>
 
-                            {/* Menu only phone*/}
-                            <Grid item xs={4}
+                            {/*only on phone*/}
+                            <MenuButtom onClick={ () => setMenuPanelVisible(true)}/>
 
-                                sx={{
-                                    display : {xs : "flex", md : "none"},
-                                    flexDirection : "row-reverse",
-                                    alignItems : "flex-end"
-                                }}
 
-                            >
-                                <Button
-                                    onClick={ () => {setMenuPanelVisible(true)}}
-                                >
-                                    Menu
-                                </Button>
-                            </Grid>
+                            <MenuPanel 
+                                visible={menuPanelVisible}  
+                                pages={props.pages}
+                                onClose={ () => setMenuPanelVisible(false) }
+                            />
 
-                            {/* Menu panel */}
-                            <div
-                                style={{
-                                    display : menuPanelVisible ? "block" : "none",
-                                    
-                                    position : "fixed",
-                                    zIndex : 10,
-                                    top : 0,
-                                    right : 0,
-
-                                    width : "200px",
-                                    height : "100vh",
-
-                                    backgroundColor : "rgba(0,0,0,0.9)",
-                                }}
-                            >
-                                <Button
-                                    onClick={ () => {setMenuPanelVisible(false)}}
-                                >
-                                    <AiOutlineClose 
-                                        style={{ width : "40px", height : "auto", color : theme.palette.primary.main}}
-                                    />
-                                </Button>
-
-                                <Stack flexDirection={"column"} alignItems={"center"}>
-                                    { props.pages.map( ( page) => (
-                                        
-                                        <div key={page.name+page.path}>
-                                            <Link href={page.path}>
-                                                <Button>{page.name}</Button>
-                                            </Link>
-                                        </div>
-                                    ))}
-                                </Stack>
-                            </div>
                         </Grid>
                     </Container>
                 </Toolbar>

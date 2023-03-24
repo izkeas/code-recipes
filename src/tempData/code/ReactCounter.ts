@@ -32,4 +32,9 @@ const code = `function ProjectCode(){
 return ProjectCode;
 `
 
-export default code;
+const codeObj = {
+    code  : code,
+    reactImplementation : code
+}
+
+export default codeObj;

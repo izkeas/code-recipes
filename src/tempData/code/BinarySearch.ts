@@ -1,4 +1,7 @@
-const code = `
+const functionRegex = /function\s*(binarySearch+)?\s*\((?:[^)(]+|\((?:[^)(]+|\([^)(]*\))*\))*\)\s*\{(?:[^}{]+|\{(?:[^}{]+|\{[^}{]*\})*\})*\}/g
+
+
+const algorithmCode = `
 function binarySearch(arr : number[], low : number | null, high : number | null, x : number) : number{
     low === null ? low = 0 : 0;
     high === null ? high = arr.length -1: -1;
@@ -22,7 +25,11 @@ function binarySearch(arr : number[], low : number | null, high : number | null,
     }
     return -1;
 }
+`
 
+const code = 
+algorithmCode + 
+`
 interface SquareProps {
     number : number;
     color : string;
@@ -142,4 +149,10 @@ function ProjectCode(){
 return ProjectCode;
 `
 
-export default code;
+
+const codeObj = {
+    code : code,
+    algorithmImplementation : algorithmCode
+} 
+
+export default codeObj;

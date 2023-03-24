@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { Button, Stack } from "@mui/material";
 import { Box } from "@mui/system";
 interface Props {
@@ -8,6 +8,17 @@ interface Props {
 export function ProjectWindow(props : Props) {
     const myElementRef = React.useRef<HTMLDivElement>(null); 
     const [isFullScreen, setIsFullScreen] = React.useState(false);
+    const [scrollActive, setScrollActive] = React.useState(false);
+
+    useEffect( () => {
+        if ((myElementRef.current?.scrollHeight || 0) > (myElementRef.current?.clientHeight || 0)){
+            setScrollActive(true);
+        }
+        else{
+            setScrollActive(false);
+        }
+
+    }, [myElementRef.current?.scrollHeight, myElementRef.current?.clientHeight])
 
     function setFullScreen() {
         const element = myElementRef.current;
@@ -30,20 +41,27 @@ export function ProjectWindow(props : Props) {
         <div ref={myElementRef}
             style={{
                 width :"80%",
-                height : "400px",
+                minHeight : "400px",
+                maxHeight : "400px",
                 background : "#141414",
                 margin : "auto",
+                marginTop : "20px",
                 display : "block",
-                overflow : "none",
+                overflow : "scroll",
                 position : "relative",
             }}
         >
-            {props.children}
-                <Stack
-                    direction={"row"}
+                <div
+                >
+                    {props.children}
+                </div>
+
+
+
+                <Stack direction={"row-reverse"}
                     sx={{
-                        position: isFullScreen === false ? "absolute" : "fixed",
-                        right : 0, bottom : "20px",
+                        position: scrollActive ? "sticky" :  isFullScreen ? "fixed" : "absolute",
+                        bottom : 0, right : 0
                     }}
                 >
                     <Button>

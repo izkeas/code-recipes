@@ -5,7 +5,10 @@ import BinarySearch from "./code/BinarySearch"
 export interface ProjectObj{
     name : string;
     description : string;
+
     code : string;
+    algorithmImplementation? : string;
+
     implementationSteps : string[];
     imageURL? : string;
     useCases ? : string[];
@@ -18,7 +21,7 @@ const projects  : ProjectObj[] = [
         description : "An react implementation of a counter, it uses React Componenent States and Components events to update the state of the counter.",
         imageURL : "/ProjectImages/ReactCounter.png",
 
-        code : ReactCounter,
+        code : ReactCounter.code,
 
         implementationSteps : [
             "Create an State called counter.",
@@ -39,7 +42,8 @@ const projects  : ProjectObj[] = [
         description : "React Implementation of binary search.",
         imageURL : "/ProjectImages/BinarySearch.png",
 
-        code :BinarySearch,
+        code :BinarySearch.code,
+        algorithmImplementation : BinarySearch.algorithmImplementation,
         
         implementationSteps : [
             "Sort the array in ascending order.",
