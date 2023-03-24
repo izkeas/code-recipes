@@ -58,7 +58,7 @@ export function ProjectWindow(props : Props) {
 
 
 
-                <Stack direction={"row-reverse"}
+                <Stack direction={"row"}
                     sx={{
                         position: scrollActive ? "sticky" :  isFullScreen ? "fixed" : "absolute",
                         bottom : 0, right : 0

@@ -48,12 +48,12 @@ export default function ProjectItem(props : Props){
                         <Typography 
                             sx={{
                                 overflow : "hidden",
-                                textOverflow : "ellipsis",
-                                whiteSpace : "normal"
+                                height : "40px"
                             }}
                         >
                             {props.description}
                         </Typography>
+
                     </Stack>
                 </Stack>
             </div>
