@@ -2,37 +2,46 @@ import ProjectPage from "@/components/ProjectPage";
 import { Container } from "@mui/material";
 import { useRouter } from "next/router";
 import projects, { ProjectObj } from "@/tempData/projects";
+import { useEffect, useState } from "react";
 
-
-function getProjectFromName(name : string){
-    for ( const proj of projects){
-        if (proj.name === name){
-            return proj;
+async function getProjectFromName(name : string){
+    const request = await fetch("/api/project", {
+        method : "POST",
+        body : JSON.stringify({ "name" : name}),
+        headers : { 
+            "Accept" : "Application/json",
+            "Content-Type" : "Application/json"
         }
-    }
-    return null;
+    })
+
+    const result = await request.json();
+    return result;
 }
 
 export default function Project(){
     const router = useRouter();
     const {id } = router.query;
+    const [project, setProject ] = useState<ProjectObj>();
 
-    let projectObj : ProjectObj | null = null;
-    
-    if (typeof id === "string" ){
-        projectObj = getProjectFromName(id || "");
-    }
+    useEffect( () => {
+        async function getProject(){
+            if (typeof id === "string"){
+                setProject( await getProjectFromName(id));
+            }
+        }
+
+        getProject();
+    }, [id])
     
     return (
         <Container>
-            {projectObj && (
-                <ProjectPage project={projectObj}/>
+            {project && (
+                <ProjectPage project={project}/>
             )}
 
-            { projectObj === null && (
+            { project === null && (
                 <p>INVALID PROJECT NOT FOUND</p>
             )}
-
         </Container>
     )
 }
