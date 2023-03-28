@@ -6,29 +6,39 @@ import { useEffect, useState } from "react";
 export default function Home() {
 
   const [ projects, setProjects] = useState([]);
+  const [ searchQuery, setSearchQuery ] = useState<{text : string, tags : string[]}>({text : "", tags : []});
 
   useEffect( () => {
     async function getProjects(){
       const result = await fetch("/api/projects", {
-        method : "GET",
+        method : "POST",
         headers : {
-          "Accept" : "Application/json"
-        }
+          "Accept" : "Application/json",
+          "Content-Type" : "Application/json"
+        },
+        body : JSON.stringify({
+          query : searchQuery.text || undefined,
+          tags : searchQuery.tags
+        })
       })
   
       const projects = await result.json();
       setProjects(projects);
+      console.log(searchQuery);
+
     }
 
+    
     getProjects();
-    console.log(projects);
 
-  }, [])
+  }, [searchQuery.text, searchQuery.tags.length, searchQuery.tags])
 
   return (
     <>
       <Container>
-          <ProjectSearch/>
+          <ProjectSearch
+            onChangeQuery={ ( str) => { setSearchQuery(str)}}
+          />
 
           <ProjectList projects={projects}/>
       </Container>

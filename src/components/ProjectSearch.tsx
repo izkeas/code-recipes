@@ -1,7 +1,38 @@
-import { TextField, Grid, Select, MenuItem, Button, OutlinedInput, InputLabel, FormControl } from "@mui/material";
+import { TextField, Grid, Select, MenuItem, Button, OutlinedInput, InputLabel, FormControl, SelectChangeEvent } from "@mui/material";
+import React from "react";
+
+interface Props {
+    onChangeQuery : (query : { text : string, tags : string[]}) => void;
+}
+
+export default function ProjectSearch(props : Props){
+
+    const [ searchTimeout, setSearchTimeout ] = React.useState<NodeJS.Timeout | undefined>(undefined);
+    const [ tags, setTags ] = React.useState<string[]>([]);
+    const [ searchText, setSearchText] = React.useState<string>("");
 
 
-export default function ProjectSearch(){
+    function onChangeSearchText(event : React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> ){
+        setSearchText(event.target.value);
+
+        if (searchTimeout){
+            clearTimeout(searchTimeout)
+            setSearchTimeout(undefined);
+        }
+
+        setSearchTimeout( setTimeout( () => {
+            props.onChangeQuery({text : event.target.value, tags : []});
+        }, 1000))
+    }
+
+    function onChangeTags(event : SelectChangeEvent<string[]>) {
+        const value = event.target.value;
+        const newTags =  typeof value === 'string' ? value.split(',') : value;
+
+        setTags(newTags);
+        props.onChangeQuery( {text: searchText, tags : newTags});
+    }
+
     return (
         <Grid container spacing={2}>
 
@@ -9,12 +40,14 @@ export default function ProjectSearch(){
                 
                 <TextField
 
+                    placeholder={"Search..."}
+                    value={searchText}
+                    onChange={onChangeSearchText}
+
                     style={{
                         marginBottom : "40px",
                         width : "100%"
                     }}
-
-                    placeholder={"Search..."}
                 />
             </Grid>
 
@@ -22,20 +55,24 @@ export default function ProjectSearch(){
                 <FormControl sx={{ width: "100%" }}>
                     <InputLabel id="demo-multiple-name-label">Category</InputLabel>
                     <Select 
-                        label="Categories" 
-                        name="Categories" 
-                        multiple 
-                        value={["AA"]}
                         input={<OutlinedInput label="Name" />}
+                        multiple 
+
+                        value={tags}
+                        onChange={onChangeTags}
+                        
+                        labelId="Categories"
+                        id="Categories" 
+                        
                         fullWidth
                     >
-                        <MenuItem>
-                            Algorithms
+                        <MenuItem value={"Algorithm"}>
+                            Algorithm
                         </MenuItem>
-                        <MenuItem>
-                            Design Patterns
+                        <MenuItem value={"Design Pattern"}>
+                            Design Pattern
                         </MenuItem>
-                        <MenuItem>
+                        <MenuItem value={"Template"}>
                             Templates
                         </MenuItem>
                     </Select>

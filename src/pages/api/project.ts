@@ -10,6 +10,7 @@ export default async function getProject(req : NextApiRequest, res: NextApiRespo
         await client.connect();
         const collection = client.db("CodeRecipes").collection("Projects");
         const project = await collection.findOne(req.body);
+
     
         res.status(200).json( project);
     }
