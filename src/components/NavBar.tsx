@@ -26,24 +26,15 @@ interface MenuButtom {
 
 export function MenuButtom(props : MenuButtom){
     return (
-        <Grid item xs={4}
-
-            sx={{
-                display : {xs : "flex", md : "none"},
-                flexDirection : "row-reverse",
-                alignItems : "flex-end"
-            }}
-
-        >
+        <div id="navbar-menu-buttom">
             <Button
                 onClick={ () => { props.onClick() }}
             >
                 Menu
             </Button>
-        </Grid>
+        </div>
     )
 }
-
 
 export function MenuPanel(props : MenuPanelProps){
     const theme = useTheme();
@@ -63,6 +54,8 @@ export function MenuPanel(props : MenuPanelProps){
 
                 backgroundColor : "rgba(0,0,0,0.9)",
             }}
+
+            id={"navbar-menu-panel"}
         >
             <Button
                 onClick={ () => { props.onClose() }}
@@ -98,65 +91,72 @@ export default function NavBar(props : Props) {
 
             elevation={0}
         >
-                <Toolbar>
-                    <Container>
-                        <Grid container>
-                            <Grid item xs={8}>
-                                <Link href="/">
+            <Toolbar>
+                <Container>
+                    <Grid container>
+                        <Grid item xs={8}>
+                            <Link href="/">
 
-                                    <Stack direction={"row"}>
-                                        <LogoSvg 
-                                                style={{
-                                                    width : "50px",
-                                                    height : "50px"
-                                                }}
-                                            />
-
-                                        <Typography variant="h3"
+                                <Stack direction={"row"}>
+                                    <LogoSvg 
                                             style={{
-                                                marginTop : "auto",
-                                                marginBottom : "auto"
+                                                width : "50px",
+                                                height : "50px"
                                             }}
-                                        >
-                                            Code Recipes
-                                        </Typography>
-                                    </Stack>
-                                </Link>
-                            </Grid>
+                                        />
 
-                            {/* Pages list only desktop */}
-                            <Grid item xs={4}
-                                sx={{
-                                    display : {xs : "none", md : "flex"},
-                                    flexDirection : "row-reverse",
-                                    alignItems : "flex-end"
-                                }}
-                            >
-
-                                { props.pages.map( (page)=> (
-                                    <div key={page.name + page.path}>
-                                        <Link href={page.path}>
-                                            <Button>
-                                                {page.name}
-                                            </Button>
-                                        </Link>
-                                    </div>
-                                ))}
-                            </Grid>
-
-                            {/*only on phone*/}
-                            <MenuButtom onClick={ () => setMenuPanelVisible(true)}/>
-
-
-                            <MenuPanel 
-                                visible={menuPanelVisible}  
-                                pages={props.pages}
-                                onClose={ () => setMenuPanelVisible(false) }
-                            />
-
+                                    <Typography variant="h3"
+                                        style={{
+                                            marginTop : "auto",
+                                            marginBottom : "auto"
+                                        }}
+                                    >
+                                        Code Recipes
+                                    </Typography>
+                                </Stack>
+                            </Link>
                         </Grid>
-                    </Container>
-                </Toolbar>
+
+                        {/* Pages list only desktop */}
+                        <Grid item xs={4} id="navbar-pages"
+                            sx={{
+                                display : {xs : "none", md : "flex"},
+                                flexDirection : "row-reverse",
+                                alignItems : "flex-end"
+                            }}
+                        >
+
+                            { props.pages.map( (page) => (
+                                <div key={page.name + page.path} >
+                                    <Link href={page.path}>
+                                        <Button>
+                                            {page.name}
+                                        </Button>
+                                    </Link>
+                                </div>
+                            ))}
+                        </Grid>
+
+                        {/*only on phone*/}
+                        <Grid item xs={4}
+                            sx={{
+                                display : {xs : "flex", md : "none"},
+                                flexDirection : "row-reverse",
+                                alignItems : "flex-end"
+                            }}
+                        >
+                            <MenuButtom onClick={ () => setMenuPanelVisible(true)}/>
+                        </Grid>
+
+                        <MenuPanel 
+                            visible={menuPanelVisible}  
+                            pages={props.pages}
+                            onClose={ () => setMenuPanelVisible(false) }
+                        />
+
+                    </Grid>
+                </Container>
+            </Toolbar>
         </AppBar>
     )
 }

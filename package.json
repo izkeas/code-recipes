@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "cypress open"
   },
   "dependencies": {
     "@babel/plugin-proposal-do-expressions": "^7.18.6",
@@ -14,29 +15,23 @@
     "@emotion/cache": "^11.10.5",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
-    "@mui/material": "^5.11.12",
+    "@mui/material": "^5.11.15",
     "@next/font": "13.2.3",
-    "@node-minify/core": "^8.0.5",
-    "@node-minify/uglify-js": "^8.0.5",
     "@types/babel__core": "^7.20.0",
     "@types/node": "18.14.6",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
-    "@types/uglify-js": "^3.17.1",
+    "cypress": "^12.9.0",
     "eslint": "8.35.0",
     "eslint-config-next": "13.2.3",
-    "jss": "^10.10.0",
-    "markdown-it": "^13.0.1",
-    "minify": "^9.2.0",
     "mongodb": "^5.1.0",
-    "next": "13.2.3",
+    "next": "^13.2.4",
     "react": "18.2.0",
     "react-code-blocks": "^0.0.9-0",
     "react-dom": "18.2.0",
-    "react-frame-component": "^5.2.6",
     "react-icons": "^4.8.0",
     "typescript": "4.9.5",
-    "uglify-js": "^3.17.4"
+    "vitest": "^0.29.8"
   },
   "devDependencies": {
     "@babel/cli": "^7.21.0",
@@ -45,7 +40,6 @@
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.21.0",
-    "@types/babel__standalone": "^7.1.4",
-    "@types/minify": "^9.1.0"
+    "@types/babel__standalone": "^7.1.4"
   }
 }
