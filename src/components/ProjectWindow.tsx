@@ -45,7 +45,6 @@ export function ProjectWindow(props : Props) {
                 maxHeight : "400px",
                 background : "#141414",
                 margin : "auto",
-                marginTop : "20px",
                 display : "block",
                 overflow : "scroll",
                 position : "relative",
@@ -55,8 +54,6 @@ export function ProjectWindow(props : Props) {
                 >
                     {props.children}
                 </div>
-
-
 
                 <Stack direction={"row"}
                     sx={{

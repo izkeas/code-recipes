@@ -47,12 +47,13 @@ export default function ProjectPage(){
         <Container>
             {project && (
                 <Paper
-                elevation={0}
+                    elevation={0}
+                    style={{
+                        overflow : "hidden"
+                    }}
                 >
                 <Wrapper>
                     <Stack spacing={2}>
-
-
                         <ProjectWindow>
                             <Project code={project.code}/>
                         </ProjectWindow>

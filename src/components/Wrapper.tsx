@@ -9,7 +9,8 @@ export default function Wrapper( props : Props){
     return (
         <div
             style={{
-                margin : props.margin || "10px"
+                margin : props.margin || "10px", overflow : "hidden"
+        
             }}
         >
             {props.children}

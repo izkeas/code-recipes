@@ -45,8 +45,7 @@ const theme =  createTheme({
         background : {
             default : "#131417",
             paper : "#24262A"
-        }
-
+        },
     }
 });
 

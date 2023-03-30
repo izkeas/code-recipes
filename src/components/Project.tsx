@@ -9,7 +9,6 @@ export default function Project(props : {code : string}){
     useEffect(() => {
         const component = reactStrToComponent(props.code, React, { Typography, Button, Stack, Grid, Container, TextField});
         setProjectComponent(component);
-    
     }, [props.code])
 
     return (

@@ -2,7 +2,7 @@ import { TextField, Grid, Select, MenuItem, Button, OutlinedInput, InputLabel, F
 import React from "react";
 
 interface Props {
-    onChangeQuery : (query : { text : string, tags : string[]}) => void;
+    onChangeQuery? : (query : { text : string, tags : string[]}) => void;
 }
 
 export default function ProjectSearch(props : Props){
@@ -21,7 +21,10 @@ export default function ProjectSearch(props : Props){
         }
 
         setSearchTimeout( setTimeout( () => {
-            props.onChangeQuery({text : event.target.value, tags : []});
+
+            if (props.onChangeQuery ) 
+                props.onChangeQuery({text : event.target.value, tags : []});
+            
         }, 1000))
     }
 
@@ -30,7 +33,9 @@ export default function ProjectSearch(props : Props){
         const newTags =  typeof value === 'string' ? value.split(',') : value;
 
         setTags(newTags);
-        props.onChangeQuery( {text: searchText, tags : newTags});
+
+        if (props.onChangeQuery)
+            props.onChangeQuery( {text: searchText, tags : newTags});
     }
 
     return (
@@ -39,7 +44,7 @@ export default function ProjectSearch(props : Props){
             <Grid item xs={8}>
                 
                 <TextField
-
+                    id="project-search-field"
                     placeholder={"Search..."}
                     value={searchText}
                     onChange={onChangeSearchText}
@@ -62,7 +67,7 @@ export default function ProjectSearch(props : Props){
                         onChange={onChangeTags}
                         
                         labelId="Categories"
-                        id="Categories" 
+                        id="project-select-tags" 
                         
                         fullWidth
                     >
