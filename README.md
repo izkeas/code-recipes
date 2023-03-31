@@ -1,38 +1,53 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Code Recipes
 
-## Getting Started
+[](img/home.png)
 
-First, run the development server:
+Code Recipes is an interactive and visual website for learning, implementing, and sharing algorithms and design patterns. Our goal is to centralize most programming algorithms in one place, so that anyone can implement and rate them.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+## Features
+### Projects page
+
+presents a grid of algorithm images, sorted by views, name, and description. Users can also organize, filter by tags, and search for these algorithms.
+
+### Algorithm Page
+
+When clicking on an algorithm, users will be directed to its page. Here, they can find the algorithm's information, such as description, use cases, and external references. The main functionality of this page is the interactive window that shows the algorithm in execution and, below it, the steps for implementation and the code.
+
+### Unit Tests
+Each comoponent has an unity test
+
+## Technologies
+  - React for components
+  - Next.js for static site generation
+  - Typescript as language
+  - MongoDB as database
+  - Cypress for tests
+
+## Contribution
+
+This project is open-source and we are always looking for contributions from the developer community. If you want to contribute, feel free to send pull requests and report issues.
+
+## Deployment
+
+- Go to Vercel, import project and deploy
+- Set the enviroment MONGODB_URI to your mongodb cluster URI
+- Create a new database called "CodeRecipes
+- Create a new collection inside CodeRecipes called "Projects"
+- You can insert your projects here with the format:
+
+```json
+{ 
+  "name" : "string",
+  "description" : "string",
+  "imageURL" : "string",
+  "code" : "string",
+  "useCases" : ["string"],
+  "implementationSteps" : ["string"],
+  "tags" : ["Algorithm", "Template", "Design Pattern"]
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## License
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This project is licensed under the MIT License - see the LICENSE.md file for more details.
