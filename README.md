@@ -1,6 +1,6 @@
 # Code Recipes
 
-[](img/home.png)
+![](img/home.png)
 
 Code Recipes is an interactive and visual website for learning, implementing, and sharing algorithms and design patterns. Our goal is to centralize most programming algorithms in one place, so that anyone can implement and rate them.
 
