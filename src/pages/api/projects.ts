@@ -33,6 +33,7 @@ export default async function getProjects(req : NextApiRequest, res: NextApiResp
 
         const array = await allProjects.toArray();    
         res.status(200).json(array);
+        await client.close();
     }
     else{
         res.status(400).json({"result" : "Invalid METHOD!"});

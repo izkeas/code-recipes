@@ -5,7 +5,7 @@ interface Props {
     children : React.ReactNode;
 }
 
-export function ProjectWindow(props : Props) {
+export default function ProjectWindow(props : Props) {
     const myElementRef = React.useRef<HTMLDivElement>(null); 
     const [isFullScreen, setIsFullScreen] = React.useState(false);
     const [scrollActive, setScrollActive] = React.useState(false);

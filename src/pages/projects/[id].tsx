@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { ProjectObj } from "@/tempData/projects";
 import { useEffect, useState } from "react";
 
-import { ProjectWindow } from "@/components/ProjectWindow";
+import ProjectWindow  from "@/components/ProjectWindow";
 import Wrapper from "@/components/Wrapper";
 import Project from "@/components/Project";
 
