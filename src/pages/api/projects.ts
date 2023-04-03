@@ -30,8 +30,6 @@ export default async function getProjects(req : NextApiRequest, res: NextApiResp
             })
         }
 
-        res.setHeader("Cache-Control", "s-maxage=3600, stale-while-revalidate=1800")
-
 
         const array = await allProjects.toArray();    
         res.status(200).json(array);
